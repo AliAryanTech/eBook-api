@@ -40,10 +40,10 @@ module.exports = class eBookJs {
                 const year = $(element).find('.file-right .fi-year').text().trim()
                 const size = $(element).find('.file-right .fi-size').text().trim()
                 const pages = $(element).find('.file-right .fi-pagecount').text().trim()
-                const image = $(element).find('.file-left img').attr('data-original').replace('-s', '')
+                const image = $(element).find('.file-left img').attr('data-original')?.replace('-s', '')
                 const url = `https://www.pdfdrive.com${$(element).find('.file-left a').attr('href')}`
                 return { id, title, year, size, pages, image, url }
-            }).get()
+            }).get().filter(book => book.id)
             return books
         } catch (error) {
             console.log(error.message)
